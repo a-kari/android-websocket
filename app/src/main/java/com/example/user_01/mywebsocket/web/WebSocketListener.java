@@ -1,6 +1,9 @@
 package com.example.user_01.mywebsocket.web;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.user_01.mywebsocket.WebSocketApplication;
 import com.example.user_01.mywebsocket.web.events.FirstEvent;
@@ -68,5 +71,14 @@ public class WebSocketListener extends okhttp3.WebSocketListener {
     public void onFailure(WebSocket webSocket, Throwable t, Response response) {
         super.onFailure(webSocket, t, response);
         Log.d(TAG, "onFailure: ");
+        if (application.isInForeground()) {
+            new Handler(Looper.getMainLooper()).post(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(application, "No internet connection. Trying to reconnect...", Toast.LENGTH_SHORT).show();
+                    application.webSocketReconnect();
+                }
+            });
+        }
     }
 }

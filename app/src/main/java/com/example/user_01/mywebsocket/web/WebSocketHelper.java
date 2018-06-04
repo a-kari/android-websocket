@@ -25,7 +25,7 @@ public class WebSocketHelper {
      */
     public WebSocketHelper(WebSocketApplication application) {
         this.application       = application;
-        this.webSocketClient   = new OkHttpClient();
+        this.webSocketClient   = new OkHttpClient.Builder().retryOnConnectionFailure(true).build();
         this.request           = new Request.Builder().url("ws://echo.websocket.org").build();
         this.webSocketListener = new WebSocketListener(application);
     }
@@ -36,9 +36,12 @@ public class WebSocketHelper {
 
     public void close() {
         if (webSocket != null) {
-            webSocket.cancel();
             webSocket.close(NORMAL_CLOSURE_STATUS, null);
         }
+    }
+
+    public void reconnect() {
+        open();
     }
 
     public void sendMessage(String message) {

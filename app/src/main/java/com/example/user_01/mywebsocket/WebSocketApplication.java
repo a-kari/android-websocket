@@ -33,6 +33,12 @@ public class WebSocketApplication extends Application {
         }
     }
 
+    public void webSocketReconnect() {
+        if (webSocketHelper != null) {
+            webSocketHelper.reconnect();
+        }
+    }
+
     /**
      * Close websocket on app background. Open websocket on app foreground.
      * Why do we need this? Because server shouldn't keep connection with device
@@ -54,5 +60,9 @@ public class WebSocketApplication extends Application {
                 webSocketHelper.close();
             }
         }
+    }
+
+    public boolean isInForeground() {
+        return !BackgroundManager.get(this).isInBackground();
     }
 }
