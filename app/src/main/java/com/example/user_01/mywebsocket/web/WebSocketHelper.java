@@ -31,9 +31,7 @@ public class WebSocketHelper {
     }
 
     public void open() {
-        if (webSocket == null) {
-            webSocket = webSocketClient.newWebSocket(request, webSocketListener);
-        }
+        webSocket = webSocketClient.newWebSocket(request, webSocketListener);
     }
 
     public void close() {
