@@ -26,13 +26,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    // Dagger 2 (Dependency Injection)
-    implementation 'com.google.dagger:dagger:2.15'
-    implementation 'com.google.dagger:dagger-android:2.15'
-    implementation 'com.google.dagger:dagger-android-support:2.15'
-    annotationProcessor 'com.google.dagger:dagger-compiler:2.15'
-    annotationProcessor 'com.google.dagger:dagger-android-processor:2.15'
-
     // OkHttp (WebSockets)
-    compile 'com.squareup.okhttp3:okhttp:3.7.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.7.0'
+
+    // EventBus (to identify event that came from WebSocket)
+    implementation 'org.greenrobot:eventbus:3.1.1'
 }

@@ -3,6 +3,10 @@ package com.example.user_01.mywebsocket.web;
 import android.util.Log;
 
 import com.example.user_01.mywebsocket.WebSocketApplication;
+import com.example.user_01.mywebsocket.web.events.FirstEvent;
+import com.example.user_01.mywebsocket.web.events.SecondEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import okhttp3.Response;
 import okhttp3.WebSocket;
@@ -28,10 +32,18 @@ public class WebSocketListener extends okhttp3.WebSocketListener {
         Log.d(TAG, "onOpen: ");
     }
 
+    /**
+     * Receives abstract event. Determines this event specifically.
+     */
     @Override
     public void onMessage(WebSocket webSocket, String text) {
         super.onMessage(webSocket, text);
         Log.d(TAG, "onMessage: " + text);
+        if (text.equals("1")) {
+            EventBus.getDefault().post(new FirstEvent(text));
+        } else {
+            EventBus.getDefault().post(new SecondEvent(text));
+        }
     }
 
     @Override

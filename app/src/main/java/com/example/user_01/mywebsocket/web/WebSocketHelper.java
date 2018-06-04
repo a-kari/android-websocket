@@ -36,6 +36,7 @@ public class WebSocketHelper {
 
     public void close() {
         if (webSocket != null) {
+            webSocket.cancel();
             webSocket.close(NORMAL_CLOSURE_STATUS, null);
         }
     }
