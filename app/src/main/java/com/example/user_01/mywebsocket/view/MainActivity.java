@@ -1,7 +1,9 @@
-package com.example.user_01.mywebsocket;
+package com.example.user_01.mywebsocket.view;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.example.user_01.mywebsocket.R;
 
 public class MainActivity extends AppCompatActivity {
 
