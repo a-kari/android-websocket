@@ -2,6 +2,7 @@ package com.example.user_01.mywebsocket;
 
 import android.app.Application;
 
+import com.example.user_01.mywebsocket.web.WebSocketHelper;
 import com.example.user_01.mywebsocket.web.WebSocketListener;
 
 import okhttp3.OkHttpClient;
@@ -14,18 +15,16 @@ import okhttp3.WebSocket;
 
 public class WebSocketApplication extends Application {
 
-    private OkHttpClient      webSocketClient;
-    private WebSocket         webSocket;
-    private WebSocketListener webSocketListener;
+    private WebSocketHelper webSocketHelper;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        webSocketHelper = new WebSocketHelper(this);
+        webSocketHelper.open();
+    }
 
-        // Create & open websocket.
-        webSocketClient   = new OkHttpClient();
-        Request request   = new Request.Builder().url("ws://echo.websocket.org").build();
-        webSocketListener = new WebSocketListener(this);
-        webSocket         = webSocketClient.newWebSocket(request, webSocketListener);
+    public void sendWebSocketMessage(String message) {
+        webSocketHelper.sendMessage(message);
     }
 }

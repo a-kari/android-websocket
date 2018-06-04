@@ -15,21 +15,17 @@ import okio.ByteString;
 public class WebSocketListener extends okhttp3.WebSocketListener {
 
     private static final String TAG = "WebSocketListener";
-    private WebSocketApplication applicationContext;
+    private WebSocketApplication application;
 
     public WebSocketListener(WebSocketApplication applicationContext) {
         super();
-        this.applicationContext = applicationContext;
+        this.application = applicationContext;
     }
 
     @Override
     public void onOpen(WebSocket webSocket, Response response) {
         super.onOpen(webSocket, response);
         Log.d(TAG, "onOpen: ");
-
-        webSocket.send("1");
-        webSocket.send("2");
-        webSocket.send("3");
     }
 
     @Override

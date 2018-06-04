@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.user_01.mywebsocket.R;
+import com.example.user_01.mywebsocket.WebSocketApplication;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,5 +12,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Send message to websocket (this will cause answer).
+        ((WebSocketApplication) getApplicationContext()).sendWebSocketMessage("Hello, world!");
     }
 }
